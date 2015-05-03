@@ -12,6 +12,7 @@ using namespace input;
 class FrameWorkApp : public AppNative {
 
   public:
+
 	void setup();
 	void mouseDown( MouseEvent event );	
 	void mouseUp(MouseEvent event);
