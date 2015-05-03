@@ -1,5 +1,5 @@
 #pragma once
-#include "cinder\app\KeyEvent.h"
+#include "boost\noncopyable.hpp"
 #include <set>
 #include <array>
 

@@ -1,6 +1,8 @@
 #include "Key.h"
+#include "Mouse.h"
 
 namespace input{
+
 Key& Key::GetInstance()
 {
 	static Key key;
