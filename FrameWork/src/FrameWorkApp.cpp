@@ -26,7 +26,7 @@ class FrameWorkApp : public AppNative {
 
 void FrameWorkApp::setup()
 {
-	Key::GetInstance();
+	Key::getInstance();
 	Mouse::getInstance();
 }
 
@@ -52,12 +52,12 @@ void FrameWorkApp::mouseDrag(MouseEvent event)
 
 void FrameWorkApp::keyDown(KeyEvent event)
 {
-	Key::GetInstance().setKeyDown(event.getCode());
+	Key::getInstance().setKeyDown(event.getCode());
 }
 
 void FrameWorkApp::keyUp(KeyEvent event)
 {
-	Key::GetInstance().setKeyUp(event.getCode());
+	Key::getInstance().setKeyUp(event.getCode());
 }
 
 void FrameWorkApp::update()
@@ -84,7 +84,7 @@ void FrameWorkApp::draw()
 	gl::clear( Color( 0, 0, 0 ) ); 
 
 	Mouse::getInstance().flush();
-	Key::GetInstance().flush();
+	Key::getInstance().flush();
 }
 
 CINDER_APP_NATIVE( FrameWorkApp, RendererGl )

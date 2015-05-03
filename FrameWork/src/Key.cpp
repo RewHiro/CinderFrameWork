@@ -3,7 +3,7 @@
 
 namespace input{
 
-Key& Key::GetInstance()
+Key& Key::getInstance()
 {
 	static Key key;
 	return key;
