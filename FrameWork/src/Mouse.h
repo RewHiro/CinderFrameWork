@@ -20,7 +20,11 @@ class Mouse : private boost::noncopyable
 	int wheel_value = 0;
 
 public:
-	static Mouse& getInstance();
+	inline static Mouse& getInstance()
+	{
+		static Mouse instance;
+		return instance;
+	}
 
 	void flush();
 	bool isPush(const int button)const;

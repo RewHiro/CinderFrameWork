@@ -1,8 +1,11 @@
 #include "cinder/app/AppNative.h"
 #include "cinder/gl/gl.h"
-
+#include "cinder\Camera.h"
+#include "cinder/params\Params.h"
+#include "Graphics.h"
 #include "Key.h"
 #include "Mouse.h"
+
 
 using namespace ci;
 using namespace ci::app;
@@ -11,6 +14,13 @@ using namespace input;
 
 class FrameWorkApp : public AppNative {
 
+
+	ci::CameraPersp camera;
+	ci::params::InterfaceGl param;
+	Vec3f pos = Vec3f::zero();
+	Vec3f scale = Vec3f::one();
+	Quatf rotate;
+	Quatf test_rotate;
   public:
 
 	void setup();
@@ -27,6 +37,13 @@ class FrameWorkApp : public AppNative {
 
 void FrameWorkApp::setup()
 {
+	param = ci::params::InterfaceGl("test", Vec2i::one() * 300.0f);
+	param.addParam("pos",&pos);
+	param.addParam("rotate", &rotate);
+	param.addParam("scale", &scale);
+
+	camera.setPerspective(90.0f, getWindowAspectRatio(), 2.0f, 200.0f);
+	camera.lookAt(Vec3f::zAxis() * 30.0f, Vec3f::zero(), Vec3f::yAxis());
 	Key::getInstance();
 	Mouse::getInstance();
 }
@@ -63,27 +80,24 @@ void FrameWorkApp::keyUp(KeyEvent event)
 
 void FrameWorkApp::update()
 {
-	auto& mouse = Mouse::getInstance();
-	if(mouse.isPush(MouseEvent::LEFT_DOWN))
+	gl::setMatrices(camera);
+	gl::rotate(rotate);
+	
+	auto& key = Key::getInstance();
+	static float angle = 0.0f;
+	if(key.isPress('w'))
 	{
-		console() << "L" << std::endl;
+		angle += 1.0f;
+		test_rotate = Quatf(Vec3f::yAxis(), angle);
 	}
-	if(mouse.isPress(MouseEvent::RIGHT_DOWN))
-	{
-		console() << "R" << std::endl;
-	}
-	if(mouse.isPull(MouseEvent::MIDDLE_DOWN))
-	{
-		console() << "M" << std::endl;
-	}
-	console() << mouse.getWheelValue() << std::endl;
 }
 
 void FrameWorkApp::draw()
 {
-	// clear out the window with black
-	gl::clear( Color( 0, 0, 0 ) ); 
-
+	gl::clear(); 
+	param.draw();
+	//g2D::drawFillRect(Vec2f(0,0), Vec2f::one() * 10.0f, Color::white());
+	g3D::drawFillCube(pos, Vec3f::one() * 2.0f, ColorA::white(),test_rotate,scale);
 	Mouse::getInstance().flush();
 	Key::getInstance().flush();
 }

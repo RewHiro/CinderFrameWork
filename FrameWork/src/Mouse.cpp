@@ -2,11 +2,6 @@
 
 namespace input
 {
-Mouse& Mouse::getInstance()
-{
-	static Mouse instance;
-	return instance;
-}
 
 void Mouse::flush()
 {

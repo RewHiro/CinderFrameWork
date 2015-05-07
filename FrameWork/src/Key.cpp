@@ -3,12 +3,6 @@
 
 namespace input{
 
-Key& Key::getInstance()
-{
-	static Key key;
-	return key;
-}
-
 void Key::flush()
 {
 	key_push.clear();

@@ -16,7 +16,11 @@ class Key : private boost::noncopyable
 	std::set<int>key_push;
 	Key() = default;
 public:
-	static Key& getInstance();
+	inline static Key& getInstance()
+	{
+		static Key key;
+		return key;
+	}
 
 	//　setにスタックされているキーを流す(削除)
 	void flush();
