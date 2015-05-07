@@ -52,12 +52,18 @@
       <Filter>Source Files\scene</Filter>
     </ClCompile>
     <ClCompile Include="..\src\scene\SceneFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\scene\Title.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\scene</Filter>
     </ClCompile>
     <ClCompile Include="..\src\scene\Stage.cpp">
+      <Filter>Source Files\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\scene\Title.cpp">
+      <Filter>Source Files\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\object\GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\object\ObjectTask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -81,12 +87,18 @@
       <Filter>Header Files\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\src\scene\SceneFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\scene\Title.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\scene</Filter>
     </ClInclude>
     <ClInclude Include="..\src\scene\Stage.h">
+      <Filter>Header Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\scene\Title.h">
+      <Filter>Header Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\object\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\object\ObjectTask.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
