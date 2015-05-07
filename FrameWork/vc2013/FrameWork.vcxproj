@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\FrameWorkApp.cpp" />
+    <ClCompile Include="..\src\Graphics.cpp" />
     <ClCompile Include="..\src\Key.cpp" />
     <ClCompile Include="..\src\Mouse.cpp" />
   </ItemGroup>
