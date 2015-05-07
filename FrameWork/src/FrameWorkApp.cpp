@@ -3,9 +3,9 @@
 #include "cinder\Camera.h"
 #include "cinder/params\Params.h"
 #include "Graphics.h"
-#include "Key.h"
-#include "Mouse.h"
-
+#include "input/Key.h"
+#include "input/Mouse.h"
+#include "scene\SceneManager.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -28,18 +28,19 @@ class FrameWorkApp : public AppNative {
 	float size = 5.0f;
 	Quatf box_rotate;
 
+	SceneManager scene_manager;
   public:
 
-	void setup();
-	void mouseDown( MouseEvent event );	
-	void mouseUp(MouseEvent event);
-	void mouseWheel(MouseEvent event);
-	void mouseMove(MouseEvent event);
-	void mouseDrag(MouseEvent event);
-	void keyDown(KeyEvent event);
-	void keyUp(KeyEvent event);
-	void update();
-	void draw();
+	  void setup()override;
+	void mouseDown( MouseEvent event ) override;	
+	void mouseUp(MouseEvent event)override;
+	void mouseWheel(MouseEvent event)override;
+	void mouseMove(MouseEvent event)override;
+	void mouseDrag(MouseEvent event)override;
+	void keyDown(KeyEvent event)override;
+	void keyUp(KeyEvent event)override;
+	void update()override;
+	void draw()override;
 };
 
 void FrameWorkApp::setup()
@@ -103,15 +104,17 @@ void FrameWorkApp::update()
 		angle += 1.0f;
 		test_rotate = Quatf(Vec3f::yAxis(), angle);
 	}
+	scene_manager.update();
 }
 
 void FrameWorkApp::draw()
 {
 	gl::clear(); 
-	param.draw();
+	//param.draw();
+	scene_manager.draw();
 
 	//g3d::drawCube(box_pos, size,ColorA::white(),box_rotate,box_scale);
-	g3d::drawSphere(box_pos, size, ColorA::white(), box_rotate, box_scale);
+	//g3d::drawSphere(box_pos, size, ColorA::white(), box_rotate, box_scale);
 	Mouse::getInstance().flush();
 	Key::getInstance().flush();
 }

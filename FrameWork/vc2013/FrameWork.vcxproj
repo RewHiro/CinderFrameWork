@@ -50,7 +50,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\include;"..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include";"..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\boost";"..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include\freetype2"</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src;..\include;..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include;..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\boost;..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include\freetype2</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;NOMINMAX;_WIN32_WINNT=0x0502;PRODUCT_NAME=$(ProjectName);DEBUG;_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -76,7 +76,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\include;"..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include";"..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\boost";"..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include\freetype2"</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\src;..\include;..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include;..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\boost;..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include\freetype2</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;NOMINMAX;_WIN32_WINNT=0x0502;PRODUCT_NAME=$(ProjectName);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
@@ -109,14 +109,24 @@
   <ItemGroup>
     <ClCompile Include="..\src\FrameWorkApp.cpp" />
     <ClCompile Include="..\src\Graphics.cpp" />
-    <ClCompile Include="..\src\Key.cpp" />
-    <ClCompile Include="..\src\Mouse.cpp" />
+    <ClCompile Include="..\src\input\Key.cpp" />
+    <ClCompile Include="..\src\input\Mouse.cpp" />
+    <ClCompile Include="..\src\scene\Scene.cpp" />
+    <ClCompile Include="..\src\scene\SceneFactory.cpp" />
+    <ClCompile Include="..\src\scene\SceneManager.cpp" />
+    <ClCompile Include="..\src\scene\Stage.cpp" />
+    <ClCompile Include="..\src\scene\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h" />
     <ClInclude Include="..\src\Graphics.h" />
-    <ClInclude Include="..\src\Key.h" />
-    <ClInclude Include="..\src\Mouse.h" />
+    <ClInclude Include="..\src\input\Key.h" />
+    <ClInclude Include="..\src\input\Mouse.h" />
+    <ClInclude Include="..\src\scene\Scene.h" />
+    <ClInclude Include="..\src\scene\SceneFactory.h" />
+    <ClInclude Include="..\src\scene\SceneManager.h" />
+    <ClInclude Include="..\src\scene\Stage.h" />
+    <ClInclude Include="..\src\scene\Title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
