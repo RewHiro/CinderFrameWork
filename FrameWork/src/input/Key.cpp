@@ -24,33 +24,4 @@ void Key::setKeyUp(const int key_code)
 	key_pull.emplace(key_code);
 	key_press.erase(key_code);
 }
-
-
-bool Key::isPress(const int key_code)
-{
-	return key_press.find(key_code) != key_press.cend();
-}
-
-bool Key::isPush(const int key_code)
-{
-	return key_push.find(key_code) != key_push.cend();
-}
-
-bool Key::isPull(const int key_code)
-{
-	return key_pull.find(key_code) != key_pull.cend();
-}
-
-bool Key::isPress(const unsigned char key_char)
-{
-	return key_press.find(static_cast<int>(key_char)) != key_press.cend();
-}
-bool Key::isPush(const unsigned char key_char)
-{
-	return key_push.find(static_cast<int>(key_char)) != key_push.cend();
-}
-bool Key::isPull(const unsigned char key_char)
-{
-	return key_pull.find(static_cast<int>(key_char)) != key_pull.cend();
-}
 }

@@ -22,16 +22,6 @@ void ObjectTask::draw()const
 	}
 }
 
-std::shared_ptr<GameObject>& ObjectTask::find(const std::string& name)
-{
-	return map.find(name)->second;
-}
-
-std::pair<OBJECT_MAP_ITR, OBJECT_MAP_ITR>& ObjectTask::finds(const std::string& name)
-{
-	return map.equal_range(name);
-}
-
 void ObjectTask::clear()
 {
 	map.clear();

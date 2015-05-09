@@ -16,7 +16,7 @@ class Key : private boost::noncopyable
 	std::set<int>key_push;
 	Key() = default;
 public:
-	inline static Key& getInstance()
+	static Key& getInstance()
 	{
 		static Key key;
 		return key;
@@ -27,13 +27,13 @@ public:
 
 	//　判定
 	//　FixMe：小文字で反応
-	bool isPress(const int key_code);
-	bool isPush(const int key_code);
-	bool isPull(const int key_code);
+	bool isPress(const int key_code){ return key_press.find(key_code) != key_press.cend(); }
+	bool isPush(const int key_code){ return key_push.find(key_code) != key_push.cend(); }
+	bool isPull(const int key_code){ return key_pull.find(key_code) != key_pull.cend(); }
 
-	bool isPress(const unsigned char key_char);
-	bool isPush(const unsigned char key_char);
-	bool isPull(const unsigned char key_char);
+	bool isPress(const unsigned char key_char){ return isPress(static_cast<int>(key_char)); }
+	bool isPush(const unsigned char key_char){ return isPush(static_cast<int>(key_char)); }
+	bool isPull(const unsigned char key_char){ return isPull(static_cast<int>(key_char)); }
 
 private:
 	//　スタック

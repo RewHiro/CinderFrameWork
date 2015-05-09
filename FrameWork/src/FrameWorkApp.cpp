@@ -1,10 +1,10 @@
-#include "cinder/app/AppNative.h"
-#include "cinder/gl/gl.h"
+#include "cinder\app\AppNative.h"
+#include "cinder\gl\gl.h"
 #include "cinder\Camera.h"
-#include "cinder/params\Params.h"
+#include "cinder\params\Params.h"
 #include "Graphics.h"
-#include "input/Key.h"
-#include "input/Mouse.h"
+#include "input\Key.h"
+#include "input\Mouse.h"
 #include "scene\SceneManager.h"
 
 using namespace ci;

@@ -16,8 +16,8 @@ public:
 	void add(const std::string& name, const std::shared_ptr<GameObject>& object);
 	void update()const;
 	void draw()const;
-	std::shared_ptr<GameObject>& find(const std::string& name);
-	std::pair<OBJECT_MAP_ITR, OBJECT_MAP_ITR>& finds(const std::string& name);
+	std::shared_ptr<GameObject>& find(const std::string& name){ return map.find(name)->second; }
+	std::pair<OBJECT_MAP_ITR, OBJECT_MAP_ITR>& finds(const std::string& name){ return map.equal_range(name); }
 	void clear();
 	void erase();
 	void addDelete(const std::shared_ptr<GameObject>& object);

@@ -15,7 +15,7 @@ protected:
 	SceneType type;
 	void addObject(const std::string& name, const std::shared_ptr<GameObject>& object);
 	void updateObject();
-	void drawObject();
+	void drawObject(){ object_task.draw(); }
 
 public:
 	Scene() = default;

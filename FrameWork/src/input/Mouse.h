@@ -28,9 +28,9 @@ public:
 	}
 
 	void flush();
-	bool isPush(const int button)const;
-	bool isPress(const int button)const;
-	bool isPull(const int button)const;
+	bool isPush(const int button)const{ return mouse_push.find(button) != mouse_push.cend(); }
+	bool isPress(const int button)const{ return mouse_press.find(button) != mouse_press.cend(); }
+	bool isPull(const int button)const{	return mouse_pull.find(button) != mouse_pull.cend();}
 	ci::Vec2i getPosition()const{ return pos; }
 	int getWheelValue()const{ return wheel_value; }
 private:

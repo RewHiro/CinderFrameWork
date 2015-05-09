@@ -1,7 +1,7 @@
 #include "Title.h"
 #include "Graphics.h"
-#include "cinder/Vector.h"
-#include "input/Mouse.h"
+#include "cinder\Vector.h"
+#include "input\Mouse.h"
 
 using namespace ci;
 using namespace ci::app;

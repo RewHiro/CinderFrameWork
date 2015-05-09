@@ -10,7 +10,3 @@ void Scene::updateObject()
 	object_task.update();
 	object_task.erase();
 }
-void Scene::drawObject()
-{
-	object_task.draw();
-}

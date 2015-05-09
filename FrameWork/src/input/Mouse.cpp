@@ -28,18 +28,4 @@ void Mouse::setMouseUp(const int button)
 	mouse_press.erase(mouse_code);
 	mouse_code_sum = button;
 }
-
-
-bool Mouse::isPush(const int button)const
-{
-	return mouse_push.find(button) != mouse_push.cend();
-}
-bool Mouse::isPress(const int button)const
-{
-	return mouse_press.find(button) != mouse_press.cend();
-}
-bool Mouse::isPull(const int button)const
-{
-	return mouse_pull.find(button) != mouse_pull.cend();
-}
 }
