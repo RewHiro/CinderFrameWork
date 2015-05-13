@@ -3,7 +3,7 @@
 class Title : public Scene
 {
 public:
-	Title() = default;
+	Title();
 	SceneType update();
 	void draw();
 };

@@ -111,8 +111,10 @@
     <ClCompile Include="..\src\Graphics.cpp" />
     <ClCompile Include="..\src\input\Key.cpp" />
     <ClCompile Include="..\src\input\Mouse.cpp" />
+    <ClCompile Include="..\src\object\Background.cpp" />
     <ClCompile Include="..\src\object\GameObject.cpp" />
     <ClCompile Include="..\src\object\ObjectTask.cpp" />
+    <ClCompile Include="..\src\object\Player.cpp" />
     <ClCompile Include="..\src\scene\Scene.cpp" />
     <ClCompile Include="..\src\scene\SceneFactory.cpp" />
     <ClCompile Include="..\src\scene\SceneManager.cpp" />
@@ -124,8 +126,10 @@
     <ClInclude Include="..\src\Graphics.h" />
     <ClInclude Include="..\src\input\Key.h" />
     <ClInclude Include="..\src\input\Mouse.h" />
+    <ClInclude Include="..\src\object\Background.h" />
     <ClInclude Include="..\src\object\GameObject.h" />
     <ClInclude Include="..\src\object\ObjectTask.h" />
+    <ClInclude Include="..\src\object\Player.h" />
     <ClInclude Include="..\src\scene\Scene.h" />
     <ClInclude Include="..\src\scene\SceneFactory.h" />
     <ClInclude Include="..\src\scene\SceneManager.h" />

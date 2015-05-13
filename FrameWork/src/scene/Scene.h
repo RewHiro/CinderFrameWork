@@ -10,13 +10,14 @@ enum class SceneType
 
 class Scene : private boost::noncopyable
 {
-	ObjectTask object_task;
+
 protected:
+	ObjectTask object_task;
 	SceneType type;
 	void addObject(const std::string& name, const std::shared_ptr<GameObject>& object);
 	void updateObject();
 	void drawObject(){ object_task.draw(); }
-
+	std::shared_ptr<GameObject>& findObject(const std::string& name){ return object_task.find(name); }
 public:
 	Scene() = default;
 	virtual ~Scene() = 0{}
