@@ -1,5 +1,10 @@
 #include "Mouse.h"
 
+using namespace ci;
+using namespace ci::app;
+
+
+
 namespace input
 {
 
@@ -9,23 +14,33 @@ void Mouse::flush()
 	mouse_pull.clear();
 }
 
-void Mouse::setMouseDown(const int button)
+void Mouse::setMouseDown(const MouseEvent& event)
 {
-	//　マウスのクリックを同時押しするとその合計が得られるため何がクリックされたかマウスのコードを計算する
-	auto mouse_code = button - mouse_code_sum;
-	if (mouse_press.find(mouse_code) == mouse_press.cend())
-	{
-		mouse_push.emplace(mouse_code);
-	}
-	mouse_press.emplace(mouse_code);
-	mouse_code_sum = button;
+	mouse_press.clear();
+	mouse_press.emplace(MouseCode::LEFT, event.isLeftDown());
+	mouse_press.emplace(MouseCode::RIGHT, event.isRightDown());
+	mouse_press.emplace(MouseCode::MIDDLE, event.isMiddleDown());
+
+	mouse_push.emplace(MouseCode::LEFT, event.isLeftDown());
+	mouse_push.emplace(MouseCode::RIGHT, event.isRightDown());
+	mouse_push.emplace(MouseCode::MIDDLE, event.isMiddleDown());
 }
-void Mouse::setMouseUp(const int button)
+void Mouse::setMouseUp(const MouseEvent& event)
 {
-	//　マウスのクリックを同時押しするとその合計が得られるため何がクリックされたかマウスのコードを計算する
-	auto mouse_code = mouse_code_sum - button;
-	mouse_pull.emplace(mouse_code);
-	mouse_press.erase(mouse_code);
-	mouse_code_sum = button;
+	if(!event.isLeftDown())
+	{
+		mouse_press.erase(mouse_press.find(MouseCode::LEFT));
+	}
+	if (!event.isRightDown())
+	{
+		mouse_press.erase(mouse_press.find(MouseCode::RIGHT));
+	}
+	if (!event.isMiddleDown())
+	{
+		mouse_press.erase(mouse_press.find(MouseCode::MIDDLE));
+	}
+	mouse_pull.emplace(MouseCode::LEFT, !event.isLeftDown());
+	mouse_pull.emplace(MouseCode::RIGHT, !event.isRightDown());
+	mouse_pull.emplace(MouseCode::MIDDLE, !event.isMiddleDown());
 }
 }

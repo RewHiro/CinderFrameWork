@@ -31,7 +31,7 @@ class FrameWorkApp : public AppNative {
 	SceneManager scene_manager;
   public:
 
-	  void setup()override;
+	void setup()override;
 	void mouseDown( MouseEvent event ) override;	
 	void mouseUp(MouseEvent event)override;
 	void mouseWheel(MouseEvent event)override;
@@ -64,11 +64,11 @@ void FrameWorkApp::setup()
 
 void FrameWorkApp::mouseDown( MouseEvent event )
 {
-	Mouse::getInstance().setMouseDown(event.getCode());
+	Mouse::getInstance().setMouseDown(event);
 }
 void FrameWorkApp::mouseUp(MouseEvent event)
 {
-	Mouse::getInstance().setMouseUp(event.getCode());
+	Mouse::getInstance().setMouseUp(event);
 }
 void FrameWorkApp::mouseWheel(MouseEvent event)
 {
@@ -98,12 +98,27 @@ void FrameWorkApp::update()
 	gl::rotate(rotate);
 	
 	auto& key = Key::getInstance();
+	auto& mouse = Mouse::getInstance();
 	static float angle = 0.0f;
 	if(key.isPress('w'))
 	{
 		angle += 1.0f;
 		test_rotate = Quatf(Vec3f::yAxis(), angle);
 	}
+
+	if (mouse.isPush(MouseCode::RIGHT))
+	{
+		console() << "Push" << std::endl;
+	}
+	if(mouse.isPull(MouseCode::RIGHT))
+	{
+		console() << "Pull" << std::endl;
+	}
+	if (mouse.isPress(MouseCode::RIGHT))
+	{
+		console() << "Press" << std::endl;
+	}
+
 	scene_manager.update();
 }
 
@@ -112,6 +127,7 @@ void FrameWorkApp::draw()
 	gl::clear(); 
 	//param.draw();
 	scene_manager.draw();
+
 
 	//g3d::drawCube(box_pos, size,ColorA::white(),box_rotate,box_scale);
 	//g3d::drawSphere(box_pos, size, ColorA::white(), box_rotate, box_scale);

@@ -10,10 +10,10 @@ using namespace input;
 SceneType Title::update()
 {
 	auto& mouse = Mouse::getInstance();
-	if(mouse.isPush(MouseEvent::LEFT_DOWN))
-	{
-		type = SceneType::STAGE;
-	}
+	//if(mouse.isPush(MouseEvent::LEFT_DOWN))
+	//{
+	//	type = SceneType::STAGE;
+	//}
 	return type;
 }
 void Title::draw()
