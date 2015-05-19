@@ -27,20 +27,20 @@ void Mouse::setMouseDown(const MouseEvent& event)
 }
 void Mouse::setMouseUp(const MouseEvent& event)
 {
-	if(!event.isLeftDown())
+	if(event.isLeft())
 	{
 		mouse_press.erase(mouse_press.find(MouseCode::LEFT));
 	}
-	if (!event.isRightDown())
+	if (event.isRight())
 	{
 		mouse_press.erase(mouse_press.find(MouseCode::RIGHT));
 	}
-	if (!event.isMiddleDown())
+	if (event.isMiddle())
 	{
 		mouse_press.erase(mouse_press.find(MouseCode::MIDDLE));
 	}
-	mouse_pull.emplace(MouseCode::LEFT, !event.isLeftDown());
-	mouse_pull.emplace(MouseCode::RIGHT, !event.isRightDown());
-	mouse_pull.emplace(MouseCode::MIDDLE, !event.isMiddleDown());
+	mouse_pull.emplace(MouseCode::LEFT, event.isLeft());
+	mouse_pull.emplace(MouseCode::RIGHT, event.isRight());
+	mouse_pull.emplace(MouseCode::MIDDLE, event.isMiddle());
 }
 }

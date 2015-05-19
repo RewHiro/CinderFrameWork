@@ -109,15 +109,28 @@ void FrameWorkApp::update()
 
 	if (mouse.isPush(MouseCode::RIGHT))
 	{
-		console() << "Push" << std::endl;
+		console() << "RPush" << std::endl;
 	}
 	if(mouse.isPull(MouseCode::RIGHT))
 	{
-		console() << "Pull" << std::endl;
+		console() << "RPull" << std::endl;
 	}
 	if (mouse.isPress(MouseCode::RIGHT))
 	{
-		console() << "Press" << std::endl;
+		console() << "RPress" << std::endl;
+	}
+
+	if (mouse.isPush(MouseCode::LEFT))
+	{
+		console() << "LPush" << std::endl;
+	}
+	if (mouse.isPull(MouseCode::LEFT))
+	{
+		console() << "LPull" << std::endl;
+	}
+	if (mouse.isPress(MouseCode::LEFT))
+	{
+		console() << "LPress" << std::endl;
 	}
 
 	scene_manager.update();
