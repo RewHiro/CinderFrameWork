@@ -9,6 +9,13 @@ void Key::flush()
 	key_pull.clear();
 }
 
+void Key::clear()
+{
+	key_push.clear();
+	key_pull.clear();
+	key_press.clear();
+}
+
 void Key::setKeyDown(const int key_code)
 {
 	if (key_press.find(key_code) == key_press.cend())

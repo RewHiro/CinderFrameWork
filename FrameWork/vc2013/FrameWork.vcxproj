@@ -47,6 +47,9 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>C:\Users\vantan\Desktop\cinder_0.8.6_ps14\cinder_0.8.6\lib\msw\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -64,7 +67,7 @@
       <AdditionalIncludeDirectories>"..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder-$(PlatformToolset)_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>cinder-$(PlatformToolset)_d.lib;Gamepad_d.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>"..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\lib\msw\$(PlatformTarget)"</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -92,7 +95,7 @@
       <AdditionalIncludeDirectories>"..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include";..\include</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
-      <AdditionalDependencies>cinder-$(PlatformToolset).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>cinder-$(PlatformToolset).lib;Gamepad.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>"..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\lib\msw\$(PlatformTarget)"</AdditionalLibraryDirectories>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -107,14 +110,22 @@
     <ResourceCompile Include="Resources.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Camera.cpp" />
+    <ClCompile Include="..\src\Collision.cpp" />
+    <ClCompile Include="..\src\component\Component.cpp" />
     <ClCompile Include="..\src\FrameWorkApp.cpp" />
     <ClCompile Include="..\src\Graphics.cpp" />
+    <ClCompile Include="..\src\input\UtilityGamePad.cpp" />
     <ClCompile Include="..\src\input\Key.cpp" />
     <ClCompile Include="..\src\input\Mouse.cpp" />
+    <ClCompile Include="..\src\MainCamera.cpp" />
     <ClCompile Include="..\src\object\Background.cpp" />
     <ClCompile Include="..\src\object\GameObject.cpp" />
+    <ClCompile Include="..\src\object\Ground.cpp" />
     <ClCompile Include="..\src\object\ObjectTask.cpp" />
     <ClCompile Include="..\src\object\Player.cpp" />
+    <ClCompile Include="..\src\object\PlayerBullet.cpp" />
+    <ClCompile Include="..\src\object\PlayerFoot.cpp" />
     <ClCompile Include="..\src\scene\Scene.cpp" />
     <ClCompile Include="..\src\scene\SceneFactory.cpp" />
     <ClCompile Include="..\src\scene\SceneManager.cpp" />
@@ -123,13 +134,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h" />
+    <ClInclude Include="..\src\Camera.h" />
+    <ClInclude Include="..\src\Collision.h" />
+    <ClInclude Include="..\src\component\Component.h" />
     <ClInclude Include="..\src\Graphics.h" />
+    <ClInclude Include="..\src\input\UtilityGamePad.h" />
     <ClInclude Include="..\src\input\Key.h" />
     <ClInclude Include="..\src\input\Mouse.h" />
+    <ClInclude Include="..\src\MainCamera.h" />
     <ClInclude Include="..\src\object\Background.h" />
     <ClInclude Include="..\src\object\GameObject.h" />
+    <ClInclude Include="..\src\object\Ground.h" />
     <ClInclude Include="..\src\object\ObjectTask.h" />
     <ClInclude Include="..\src\object\Player.h" />
+    <ClInclude Include="..\src\object\PlayerBullet.h" />
+    <ClInclude Include="..\src\object\PlayerFoot.h" />
     <ClInclude Include="..\src\scene\Scene.h" />
     <ClInclude Include="..\src\scene\SceneFactory.h" />
     <ClInclude Include="..\src\scene\SceneManager.h" />

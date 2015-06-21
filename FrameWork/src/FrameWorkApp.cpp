@@ -6,6 +6,10 @@
 #include "input\Key.h"
 #include "input\Mouse.h"
 #include "scene\SceneManager.h"
+#include "cinder\gl\Light.h"
+#include "cinder\gl\Material.h"
+#include "cinder\gl\TextureFont.h"
+#include "input\UtilityGamePad.h"
 
 
 using namespace ci;
@@ -13,27 +17,21 @@ using namespace ci::app;
 using namespace input;
 
 
-class FrameWorkApp : public AppNative {
 
-
-	ci::CameraPersp camera;
-	ci::params::InterfaceGl param;
-	ci::params::InterfaceGl box_param;
+class FrameWorkApp : public AppNative
+{
 	Vec3f pos = Vec3f::zero();
 	Vec3f scale = Vec3f::one();
-	Quatf rotate;
-	Quatf test_rotate;
 
-	Vec3f box_pos = Vec3f::zero();
-	Vec3f box_scale = Vec3f::one();
-	float size = 5.0f;
-	Quatf box_rotate;
+	//std::shared_ptr<gl::Light> light;
+	std::unique_ptr<SceneManager> scene_manager;
+public:
 
-	SceneManager scene_manager;
-  public:
-
+	void prepareSettings(Settings *settings)override;
 	void setup()override;
-	void mouseDown( MouseEvent event ) override;	
+	void resize()override;
+	void shutdown()override;
+	void mouseDown(MouseEvent event) override;
 	void mouseUp(MouseEvent event)override;
 	void mouseWheel(MouseEvent event)override;
 	void mouseMove(MouseEvent event)override;
@@ -44,26 +42,40 @@ class FrameWorkApp : public AppNative {
 	void draw()override;
 };
 
+void FrameWorkApp::prepareSettings(Settings *settings)
+{
+	settings->setWindowSize(Vec2i(1440, 810));
+}
+
 void FrameWorkApp::setup()
 {
-	param = ci::params::InterfaceGl("test", Vec2i::one() * 300.0f);
-	param.addParam("pos",&pos);
-	param.addParam("rotate", &rotate);
-	param.addParam("scale", &scale);
+	GamePad::getInstance().init();
+	scene_manager = std::make_unique<SceneManager>();
 
-	box_param = ci::params::InterfaceGl("box", Vec2i::one() * 200);
-	box_param.addParam("pos", &box_pos);
-	box_param.addParam("size", &size);
-	box_param.addParam("scale", &box_scale);
-	box_param.addParam("rotate", &box_rotate);
+	gl::enableDepthRead();
+	gl::enableDepthWrite();
 
-	camera.setPerspective(90.0f, getWindowAspectRatio(), 2.0f, 200.0f);
-	camera.lookAt(Vec3f::zAxis() * 30.0f, Vec3f::zero(), Vec3f::yAxis());
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_NORMALIZE);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_COLOR_MATERIAL);
+
 	Key::getInstance();
 	Mouse::getInstance();
 }
 
-void FrameWorkApp::mouseDown( MouseEvent event )
+void FrameWorkApp::resize()
+{
+	scene_manager->resize();
+}
+
+void FrameWorkApp::shutdown()
+{
+	GamePad::getInstance().shutdown();
+}
+
+void FrameWorkApp::mouseDown(MouseEvent event)
 {
 	Mouse::getInstance().setMouseDown(event);
 }
@@ -81,6 +93,7 @@ void FrameWorkApp::mouseMove(MouseEvent event)
 }
 void FrameWorkApp::mouseDrag(MouseEvent event)
 {
+
 }
 
 void FrameWorkApp::keyDown(KeyEvent event)
@@ -93,60 +106,24 @@ void FrameWorkApp::keyUp(KeyEvent event)
 	Key::getInstance().setKeyUp(event.getCode());
 }
 
+
+#define POLL_ITERATION_INTERVAL 30
+
 void FrameWorkApp::update()
 {
-	gl::setMatrices(camera);
-	gl::rotate(rotate);
-	
-	auto& key = Key::getInstance();
-	auto& mouse = Mouse::getInstance();
-	static float angle = 0.0f;
-	if(key.isPress('w'))
-	{
-		angle += 1.0f;
-		test_rotate = Quatf(Vec3f::yAxis(), angle);
-	}
-
-	if (mouse.isPush(MouseCode::RIGHT))
-	{
-		console() << "RPush" << std::endl;
-	}
-	if(mouse.isPull(MouseCode::RIGHT))
-	{
-		console() << "RPull" << std::endl;
-	}
-	if (mouse.isPress(MouseCode::RIGHT))
-	{
-		console() << "RPress" << std::endl;
-	}
-
-	if (mouse.isPush(MouseCode::LEFT))
-	{
-		console() << "LPush" << std::endl;
-	}
-	if (mouse.isPull(MouseCode::LEFT))
-	{
-		console() << "LPull" << std::endl;
-	}
-	if (mouse.isPress(MouseCode::LEFT))
-	{
-		console() << "LPress" << std::endl;
-	}
-
-	scene_manager.update();
+	GamePad::getInstance().update();
+	scene_manager->update();
 }
 
 void FrameWorkApp::draw()
 {
-	gl::clear(); 
-	//param.draw();
-	scene_manager.draw();
+	gl::clear();
 
+	scene_manager->draw();
 
-	//g3d::drawCube(box_pos, size,ColorA::white(),box_rotate,box_scale);
-	//g3d::drawSphere(box_pos, size, ColorA::white(), box_rotate, box_scale);
 	Mouse::getInstance().flush();
 	Key::getInstance().flush();
+	GamePad::getInstance().flush();
 }
 
-CINDER_APP_NATIVE( FrameWorkApp, RendererGl )
+CINDER_APP_NATIVE(FrameWorkApp, RendererGl)

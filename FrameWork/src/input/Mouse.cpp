@@ -14,6 +14,13 @@ void Mouse::flush()
 	mouse_pull.clear();
 }
 
+void Mouse::clear()
+{
+	mouse_press.clear();
+	mouse_push.clear();
+	mouse_pull.clear();
+}
+
 void Mouse::setMouseDown(const MouseEvent& event)
 {
 	mouse_press.clear();

@@ -1,5 +1,6 @@
 #pragma once
 #include "boost\noncopyable.hpp"
+#include "cinder\app\KeyEvent.h"
 #include <set>
 
 class FrameWorkApp;
@@ -23,6 +24,7 @@ public:
 
 	//　setにスタックされているキーを流す(削除)
 	void flush();
+	void clear();
 
 	//　判定
 	//　FixMe：小文字で反応

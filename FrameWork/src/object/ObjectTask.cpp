@@ -1,8 +1,17 @@
 #include "ObjectTask.h"
 
+ObjectTask& ObjectTask::getInstance()
+{
+	static ObjectTask instance;
+	return instance;
+}
+
 void ObjectTask::add(const std::string& name, const std::shared_ptr<GameObject>& object)
 {
-	list.emplace_front(object);
+	std::string name__ = typeid(*object.get()).name();
+	auto testu = name__.substr(6);
+	object->name = name;
+	list.emplace_back(object);
 	map.emplace(name, object);
 }
 
@@ -10,7 +19,15 @@ void ObjectTask::update()const
 {
 	for(const auto& object : list)
 	{
-		object->update();
+		if(object->getUpdateState() == GameObject::UpdateState::UPDATE)
+		{
+			object->update();
+		}
+		else
+		{
+			object->start();
+			object->update_state = GameObject::UpdateState::UPDATE;
+		}
 	}
 }
 
@@ -26,6 +43,10 @@ void ObjectTask::clear()
 {
 	map.clear();
 	list.clear();
+	for (size_t i = 0; i < delete_list.size(); ++i)
+	{
+		delete_list.pop();
+	}
 }
 
 void ObjectTask::erase()

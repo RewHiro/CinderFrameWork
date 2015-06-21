@@ -1,0 +1,11 @@
+﻿2015/06/18 16:04:42 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\vantan\Desktop\CinderFrameWork\FrameWork\vc2013\FrameWork.vcxproj" (Build ターゲット)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\src /I..\include /I..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include /I..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\boost /I..\..\..\cinder_0.8.6_ps14\cinder_0.8.6\include\freetype2 /Zi /nologo /W3 /WX- /MP /O2 /Oy- /GL /D WIN32 /D NDEBUG /D _WINDOWS /D NOMINMAX /D _WIN32_WINNT=0x0502 /D PRODUCT_NAME=FrameWork /D _UNICODE /D UNICODE /GF /Gm- /EHsc /MT /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\object\ObjectTask.cpp
+         ObjectTask.cpp
+     1>..\src\object\ObjectTask.cpp(11): error C2082: 仮パラメーター 'name' が再定義されました。
+     1>プロジェクト "C:\Users\vantan\Desktop\CinderFrameWork\FrameWork\vc2013\FrameWork.vcxproj" (Build ターゲット) のビルドが終了しました -- 失敗。
+
+ビルドに失敗しました。
+
+経過時間 00:00:01.70

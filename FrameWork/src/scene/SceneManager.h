@@ -9,6 +9,7 @@ class SceneManager : private boost::noncopyable
 	std::unique_ptr<Scene>scene;
 public:
 	SceneManager();
+	void resize();
 	void update();
 	void draw();
 };

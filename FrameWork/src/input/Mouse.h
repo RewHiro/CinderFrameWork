@@ -35,6 +35,7 @@ public:
 	}
 
 	void flush();
+	void clear();
 	bool isPush(MouseCode code)const{ 
 		if (mouse_push.find(code) == mouse_push.cend())return false;
 		return mouse_push.find(code)->second; 

@@ -13,8 +13,9 @@ namespace graphics3D
 		const Vec3f& scale
 		)
 	{
-		gl::pushModelView();
 		gl::color(color);
+		gl::pushModelView();
+
 		gl::translate(pos);
 		gl::rotate(rotate);
 		gl::scale(scale);
